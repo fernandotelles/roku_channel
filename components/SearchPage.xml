@@ -2,16 +2,25 @@
 <component name="SearchPage" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
 
 	<script type="text/brightscript" uri="pkg:/components/SearchPage.brs" />
+	<script type="text/brightscript" uri="pkg:/source/requestHelper.brs" />
 	
 	<children>
-		<MiniKeyboard 
-			id="miniKeyboard"
-			translation= "[100, 100]"
-		/>
-		<Label
-			id="label"
-			text=""
-			translation= "[550, 100]"
-		/>
+		<PanelSet id="panelSet">
+			<Panel id="keyboardPanel" 
+				panelSize="narrow">
+				<MiniKeyboard 
+					id="miniKeyboard"
+				/>
+			</Panel>
+			<Panel id="resultPanel"
+				panelSize="wide">
+				<Label
+					id="resultLabel"
+					text="Type for search"
+					horizAlign="center"
+					vertAlign="center"
+				/>
+			</Panel>
+		</PanelSet>
 	</children>
 </component>

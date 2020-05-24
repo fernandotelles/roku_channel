@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="HTTPTask" extends="Task">
+	
+	<interface>
+        <field id="requestParams" type="assocarray" />
+        <field id="result" type="assocarray" />
+    </interface>
+    
+	<script type="text/brightscript" uri="pkg:/components/HTTPTask.brs" />
+</component>
