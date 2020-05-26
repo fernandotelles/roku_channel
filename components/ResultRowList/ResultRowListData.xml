@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ResultRowListData" extends="ContentNode">
+	
+	<interface>
+		<field id="title" type="string" />
+		<field id="posterUrl" type="string" />
+	</interface>
+	
+</component>
+

@@ -20,6 +20,13 @@
 					horizAlign="center"
 					vertAlign="center"
 				/>
+				<RowList
+		            id="selectionRow"
+		            rowLabelColor="0x333333"
+		            showRowCounter="[false]"
+		            translation="[0,50]"
+		            showRowLabel="[true, true]"
+		        />
 			</Panel>
 		</PanelSet>
 	</children>

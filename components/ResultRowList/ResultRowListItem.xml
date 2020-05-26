@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ResultRowListItem" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	
+	<interface>
+		<field id="itemContent" type="node" onChange="onContentChanged"/>
+	</interface>
+	
+	<script type="text/brightscript" uri="pkg:/components/ResultRowList/ResultRowListItem.brs" />
+	
+	<children>
+		<LayoutGroup layoutDirection="vert" vertAlignment="top" itemSpacings="20" translation="[0,0]" >
+			<Poster id="poster"/>
+			<Label id="title"  />
+		</LayoutGroup>
+	</children>
+</component>
