@@ -10,6 +10,10 @@ function searchAssetByTitle(title as string)
     return ("http://192.168.43.102:8080/vod/search?s=" + title)
 end function
 
+function getOmdbURL()
+    return "http://www.omdbapi.com/?apikey=69a8c95d&s=%22test%22"
+end function
+
 sub request(url as string, observerMethod as string, method = "GET" as string, body = invalid as object, headers = invalid as object)
     body = FormatJson({})
     
