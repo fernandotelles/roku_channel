@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="SimpleDetailPage" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	
+	<interface>
+		<function name="configure" />
+	</interface>
+	
+	<script type="text/brightscript" uri="pkg:/components/SimpleDetailPage.brs" />
+	
+	<children>
+		<LayoutGroup translation="[640,0]"
+			layoutDirection="vert" 
+			vertAlignment="top" 
+			itemSpacings="20" >
+			
+			<Poster id="image" 
+				visible = "false"
+				width="0"
+				height="0"
+				translation="[930, 200]" />
+			<Label id="title" 
+				translation="[940,360]"
+				visible = "false"
+				horizAlign="center"/>
+			<Label id="year" 
+				translation="[940, 380]"
+				visible = "false"/>
+			<Label id="description"
+				translation="[940,400]"
+				visible = "false"/>
+		</LayoutGroup>
+		<Rectangle
+			translation="[0,0]"
+			visible="true"
+			width="640"
+			height="720"
+			color="#333333"
+			opacity="0.5"
+		/>
+		<LabelList 
+			id="buttons"
+			translation="[100,200]"
+			color = "0xFFFFFFFF"
+			focusedColor = "0x000000FF"
+			visible="false"
+			vertFocusAnimationStyle="fixedFocusWrap"
+		/>
+	</children>
+</component>
