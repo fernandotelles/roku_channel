@@ -5,11 +5,13 @@
 	<script type="text/brightscript" uri="pkg:/source/requestHelper.brs" />
 	
 	<children>
-		<PanelSet id="panelSet">
+		<PanelSet id="panelSet"
+			visible="true">
 			<Panel id="keyboardPanel" 
 				panelSize="narrow">
 				<MiniKeyboard 
 					id="miniKeyboard"
+					visible="true"
 				/>
 			</Panel>
 			<Panel id="resultPanel"

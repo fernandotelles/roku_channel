@@ -33,8 +33,24 @@ sub onItemFocused(params as object)
 end sub
 
 sub onItemSelected(params as object)
-    ? params.getData()
+    itemSelected = params.getData()
+    itemSelectedContent = m.gridPanel.grid.content.getChild(itemSelected)
+    m.detailPage = m.top.createChild("SimpleDetailPage")
+    m.detailPage.callFunc("configure", m.assetList[itemSelected])
+    m.detailPage.setFocus(true)
+    m.gridPanel.grid.visible = false
 end sub
+
+function onKeyEvent(key, press)
+    if press
+        if key = "options"
+            m.searchPage = m.top.createChild("SearchPage")
+            m.searchPage.visible = true
+            m.searchPage.setFocus(true)
+            m.gridPanel.grid.visible = false
+        end if
+    end if
+end function
 
 function getPosterGridConfig()
     return {
