@@ -52,7 +52,12 @@ sub onItemSelected(params as object)
      item = params.getData()
      itemContent = m.buttons.content.getChild(item)
      if itemContent.title = "Play Video" then
-        ? "Play The Video"
+        m.videoPlayer = m.top.createChild("Player")
+        videoData = {
+            url: "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8"
+            title: (m.title.text + m.year.text)
+        }
+        m.videoPlayer.callFunc("configure", videoData)
      else
         ? "Back to grid menu"
      end if

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Player" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	
+	<interface>
+		<function name="configure"/>
+	</interface>
+	
+	<script type="text/brightscript" uri="pkg:/components/Player.brs" />
+	
+	<children>	
+		<Video id="videoPlayer" />
+	</children>
+</component>
