@@ -3,6 +3,7 @@
 	
 	<interface>
 		<function name="configure"/>
+		<function name="stopVideo"/>
 	</interface>
 	
 	<script type="text/brightscript" uri="pkg:/components/Player.brs" />

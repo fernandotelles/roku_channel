@@ -55,10 +55,30 @@ sub onItemSelected(params as object)
         m.videoPlayer = m.top.createChild("Player")
         videoData = {
             url: "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8"
-            title: (m.title.text + m.year.text)
+            title: (m.title.text +" - "+ m.year.text)
         }
         m.videoPlayer.callFunc("configure", videoData)
      else
-        ? "Back to grid menu"
+        setFieldsVisible(false)
+        m.buttons.setFocus(false)
+        m.top.visible = false
+        m.top.getParent().findNode("gridPanel").grid.visible = true
+        m.top.getParent().findNode("gridPanel").grid.setFocus(true)
      end if
 end sub
+
+function onKeyEvent(key, press)
+    if press then
+        if key = "back" then
+            if(m.videoPlayer <> invalid)
+                m.videoPlayer.callFunc("stopVideo")
+                m.videoPlayer.visible = false
+                m.videoPlayer.setFocus(false)
+                m.videoPlayer = invalid
+                
+                m.buttons.setFocus(true)
+                return true
+            end if
+        end if
+    end if
+end function

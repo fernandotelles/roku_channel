@@ -14,3 +14,7 @@ end sub
 sub playVideo()
     m.videoPlayer.control = "play"
 end sub
+
+sub stopVideo(params = invalid as dynamic)
+    m.videoPlayer.control = "stop"
+end sub
