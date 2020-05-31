@@ -6,7 +6,17 @@ sub init()
     m.posterGrid.setFields(getPosterGridConfig())
     m.posterGridContent = createObject("roSGNode", "ContentNode")
     m.top.setFocus(true)
-    request(getOmdbURL(), "fillGridPanel")
+    m.task = createObject("roSGNode", "HTTPTask")
+    
+    httpParams = {
+        httpMethod: "GET"
+        url: "http://www.omdbapi.com/?apikey=69a8c95d&s=%22test%22/",
+        body: invalid
+        headers: invalid
+    }
+    m.task.setField("requestParams", httpParams)
+    m.task.observeField("result","fillGridPanel")
+    m.task.control = "RUN"
 end sub
 
 
@@ -54,12 +64,12 @@ end function
 
 function getPosterGridConfig()
     return {
-        basePosterSize: [300, 200]
+        basePosterSize: [230, 285]
         itemSpacing: [30,30]
         caption1NumLines: 1
         caption2NumLines: 1
-        numColumns: 3
-        numRows: 3
+        numColumns: 5
+        numRows: 2
         fixedLayout: false
     }
 end function

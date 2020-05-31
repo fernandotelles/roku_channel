@@ -2,15 +2,19 @@
 <component name="AssetGridPage" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
 
 	<script type="text/brightscript" uri="pkg:/components/AssetGridPage.brs" />
-	<script type="text/brightscript" uri="pkg:/source/requestHelper.brs" />
 	
 	<children>
-		<GridPanel id="gridPanel" 
-			panelSize="full"
-			isFullScreen="true"
-			focusable = "true"
-			createNextPanelOnItemFocus="false"
-			visible="true"/>
+		<LayoutGroup 
+			layoutDirection="horiz" 
+			vertAlignment="top" 
+			horizAlignment="center">
 			
+			<GridPanel id="gridPanel" 
+				panelSize="full"
+				isFullScreen="true"
+				focusable = "true"
+				createNextPanelOnItemFocus="false"
+				visible="true"/>
+		</LayoutGroup>
 	</children>
 </component>

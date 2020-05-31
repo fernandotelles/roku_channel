@@ -1,19 +1,45 @@
 sub init()
     m.keyboard = m.top.findNode("miniKeyboard")
-    m.keyboard.setFocus(true)
+
     m.keyboard.observeField("text", "onKeyEnter")
     m.label = m.top.findNode("resultLabel")
     
     m.panelSet = m.top.findNode("panelSet")
-    m.panelSet.observeField("focusedChild", "showPanel")
+    m.panelSet.observeField("focusedChild", "onFocusedChildChanged")
+    m.keyboardPanel = m.top.findNode("keyboardPanel")
+    m.keyboardPanel.hasNextPanel = true
     m.resultPanel = m.top.findNode("resultPanel")
-    m.panelSet.observeField("focusedChild", "showPanel")
-    request(index(), "getApiKey")
+    
+    m.task = createObject("roSGNode", "HTTPTask")
+    
+    httpParams = {
+        httpMethod: "GET"
+        url: "http://192.168.43.102:8080/",
+        body: invalid
+        headers: invalid
+    }
+    m.task.setField("requestParams", httpParams)
+    m.task.observeField("result","getAPIKey")
+    m.task.control = "RUN"
+    
+    m.keyboard.setFocus(true)
 end sub
 
 sub onKeyEnter(key)
     m.label.text = key.getData().ToStr()
-    request(searchAssetByTitle(m.label.text), "onSuccess", "GET", invalid, {"x-api-token":  m.apiKey})
+    
+    httpParams = {
+        httpMethod: "GET"
+        url: ("http://192.168.43.102:8080/vod/search?s=" + m.keyboard.text),
+        body: invalid
+        headers: {"x-api-token":  m.apiKey}
+    }
+    
+    m.task.setField("requestParams", httpParams)
+    m.task.unobserveField("result")
+    m.task.observeField("result","onSuccess")
+    m.task.control = "RUN"
+
 end sub
 
 sub onSuccess(params as object)
