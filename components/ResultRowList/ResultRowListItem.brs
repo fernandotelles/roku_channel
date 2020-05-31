@@ -18,6 +18,6 @@ function getResultRowListItemConfig()
             width: 120
             height: 120
         }
-        fallBackPoster: "pkg:/images/splash_hd.jpg"
+        fallBackPoster: "pkg:/images/bladerunner.jpg"
     }
 end function

@@ -59,7 +59,6 @@ sub onSuccess(params as object)
     m.rowList.content = rowData
     
     m.rowList.observeField("rowItemSelected", "onRowItemSelected")
-'    m.rowList.setFocus(true)
 end sub
 
 sub getAPIKey(params as object)
@@ -80,6 +79,6 @@ function getResultRowListConfig()
         rowLabelOffset: [ [0, 25 ], [0, 25 ] ]
         rowFocusAnimationStyle: "floatingFocus"
         showRowLabel: [true, true]
-        rowLabelColor: "0xa0b033ff"
+        rowLabelColor: "0xFFB17A"
     }
 end function
