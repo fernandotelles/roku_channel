@@ -4,33 +4,25 @@
 	<script type="text/brightscript" uri="pkg:/components/SearchPage.brs" />
 	
 	<children>
-		<PanelSet id="panelSet"
+		<MiniKeyboard 
+			id="miniKeyboard"
+			translation="[100, 100]"
 			visible="true"
-			slidingStatus="true">
-			<Panel id="keyboardPanel" 
-				panelSize="narrow">
-				<MiniKeyboard 
-					id="miniKeyboard"
-					visible="true"
-				/>
-			</Panel>
-			<Panel id="resultPanel"
-				panelSize="wide">
-				<Label
-					id="resultLabel"
-					text="Type for search"
-					horizAlign="center"
-					vertAlign="center"
-				/>
-				<RowList
-		            id="selectionRow"
-		            rowLabelColor="0x333333"
-		            showRowCounter="[false]"
-		            translation="[0,50]"
-		            showRowLabel="[true, true]"
-		        />
-			</Panel>
-		</PanelSet>
+		/>
+		<Label
+			id="resultLabel"
+			translation="[520, 100]"
+			text="Type for search"
+			horizAlign="center"
+			vertAlign="center"
+		/>
+		<RowList
+            id="selectionRow"
+            rowLabelColor="0x333333"
+            showRowCounter="[false]"
+            translation="[520,150]"
+            showRowLabel="[true, true]"
+        />
 		 
 	</children>
 </component>

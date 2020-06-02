@@ -4,12 +4,6 @@ sub init()
     m.keyboard.observeField("text", "onKeyEnter")
     m.label = m.top.findNode("resultLabel")
     
-    m.panelSet = m.top.findNode("panelSet")
-    m.panelSet.observeField("focusedChild", "onFocusedChildChanged")
-    m.keyboardPanel = m.top.findNode("keyboardPanel")
-    m.keyboardPanel.hasNextPanel = true
-    m.resultPanel = m.top.findNode("resultPanel")
-    
     m.task = createObject("roSGNode", "HTTPTask")
     
     httpParams = {
@@ -67,11 +61,25 @@ sub getAPIKey(params as object)
     m.apiKey = parseJson(response).apiToken
 end sub
 
+function onKeyEvent(key, press)
+
+    if press
+        if key = "right"
+            if m.rowList <> invalid
+                m.rowList.setFocus(true)
+            end if
+        else if key = "left"
+            m.keyboard.setFocus(true)
+        end if
+    end if
+    
+end function
+
 function getResultRowListConfig()
     return {
         itemComponentName: "ResultRowListItem"
-        numRows: 3
-        itemSize: [1920, 200]
+        numRows: 1
+        itemSize: [700, 200]
         rowHeights: [200]
         rowItemSize: [[120,120]]
         itemSpacing: [ 0, 25]
