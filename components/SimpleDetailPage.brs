@@ -32,6 +32,7 @@ sub setFieldsVisible(visible as boolean)
     m.year.visible = visible
     m.description.visible = visible
     m.poster.visible = visible
+    m.top.findNode("rect").visible = visible
 end sub
 
 sub initButtons()
@@ -59,12 +60,22 @@ sub onItemSelected(params as object)
         }
         m.videoPlayer.callFunc("configure", videoData)
      else
-        setFieldsVisible(false)
-        m.buttons.setFocus(false)
-        m.top.visible = false
-        m.top.getParent().findNode("gridPanel").grid.visible = true
-        m.top.getParent().findNode("gridPanel").grid.setFocus(true)
+        onBackButtonPressed()
      end if
+end sub
+
+sub onBackButtonPressed()
+    parentNode = m.top.getParent()
+    setFieldsVisible(false)
+    m.buttons.setFocus(false)
+    m.top.visible = false
+    if parentNode.id = "searchPage"
+        m.top.getParent().getParent().findNode("searchPageGroup").visible = true
+        m.top.getParent().getParent().findNode("miniKeyboard").setFocus(true)
+    else
+        m.top.getParent().findNode("gridPanel").grid.visible = true
+        m.top.getParent().findNode("gridPanel").grid.setFocus(true) 
+    end if
 end sub
 
 function onKeyEvent(key, press)
@@ -77,6 +88,9 @@ function onKeyEvent(key, press)
                 m.videoPlayer = invalid
                 
                 m.buttons.setFocus(true)
+                return true
+            else 
+                onBackButtonPressed()
                 return true
             end if
         end if
