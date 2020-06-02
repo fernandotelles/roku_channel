@@ -2,6 +2,7 @@ sub init()
     m.keyboard = m.top.findNode("miniKeyboard")
     m.keyboard.observeField("text", "onKeyEnter")
     m.label = m.top.findNode("resultLabel")
+    m.notFoundLabel = m.top.findNode("notFound")
     m.task = createObject("roSGNode", "HTTPTask")
     m.radioButtonList = m.top.findNode("radioButtonList")
     initRadioButtonList()
@@ -21,10 +22,11 @@ end sub
 
 sub onKeyEnter(key)
     m.label.text = key.getData().ToStr()
+    m.searchTerm = m.keyboard.text
     
     httpParams = {
         httpMethod: "GET"
-        url: ("http://192.168.43.102:8080/vod/search?s=" + m.keyboard.text),
+        url: ("http://192.168.43.102:8080/vod/search?s=" + m.searchTerm),
         body: invalid
         headers: {"x-api-token":  m.apiKey}
     }
@@ -38,6 +40,7 @@ end sub
 
 sub onSuccess(params as object)
     m.assets = parseJson(params.getData().bodyString)
+    m.notFoundLabel.visible = false
     m.rowList = m.top.findNode("selectionRow")
     m.rowList.setFields(getResultRowListConfig())
     
@@ -52,6 +55,9 @@ sub onSuccess(params as object)
     m.rowList.content = rowData
     
     m.rowList.observeField("rowItemSelected", "onRowItemSelected")
+    if m.assets.count() = 0 
+        m.notFoundLabel.visible = true
+    end if
 end sub
 
 sub getAPIKey(params as object)
@@ -93,7 +99,7 @@ sub initRadioButtonList()
     m.radioButtonList.content = createObject("roSGNode", "ContentNode")
     m.radioButtonList.observeField("itemSelected","onItemSelected")
     addRadioButtonList("All")
-    addRadioButtonList("Movies")
+    addRadioButtonList("Movie")
     addRadioButtonList("Series")
     m.radioButtonList.checkedItem = 0
 end sub
@@ -104,4 +110,23 @@ sub addRadioButtonList(title as string)
         item.setField("title", title)
         m.radioButtonList.content.appendChild(item)
     end if
+end sub
+
+sub onItemSelected(params as object)
+    baseURL = ("http://192.168.43.102:8080/vod/search?s=" + m.searchTerm)
+    itemSelected = m.radioButtonList.content.getChild(params.getData())
+    if not itemSelected.title = "All"
+        baseURL = (baseURL + "&filter=" + itemSelected.title)
+    end if
+
+    httpParams = {
+        httpMethod: "GET"
+        url: baseURL 
+        body: invalid
+        headers: {"x-api-token":  m.apiKey}
+    }
+    m.task.setField("requestParams", httpParams)
+    m.task.unobserveField("result")
+    m.task.observeField("result","onSuccess")
+    m.task.control = "RUN"
 end sub

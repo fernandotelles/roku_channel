@@ -27,6 +27,13 @@
             translation="[520,300]"
             showRowLabel="[true, true]"
         />
-		 
+		 <Label
+			id="notFound"
+			translation="[520, 350]"
+			text="Not Found!"
+			horizAlign="center"
+			vertAlign="center"
+			visible="false"
+		/>
 	</children>
 </component>
