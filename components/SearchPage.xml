@@ -4,36 +4,38 @@
 	<script type="text/brightscript" uri="pkg:/components/SearchPage.brs" />
 	
 	<children>
-		<MiniKeyboard 
-			id="miniKeyboard"
-			translation="[100, 100]"
-			visible="true"
-		/>
-		<Label
-			id="resultLabel"
-			translation="[520, 100]"
-			text="Type for search"
-			horizAlign="center"
-			vertAlign="center"
-		/>
-		<RadioButtonList 
-			id="radioButtonList"
-			translation="[520, 150]"
-		/>
-		<RowList
-            id="selectionRow"
-            rowLabelColor="0x333333"
-            showRowCounter="[false]"
-            translation="[520,300]"
-            showRowLabel="[true, true]"
-        />
-		 <Label
-			id="notFound"
-			translation="[520, 350]"
-			text="Not Found!"
-			horizAlign="center"
-			vertAlign="center"
-			visible="false"
-		/>
+		<Group>
+			<MiniKeyboard 
+				id="miniKeyboard"
+				translation="[100, 100]"
+				visible="true"
+			/>
+			<Label
+				id="resultLabel"
+				translation="[520, 100]"
+				text="Type for search"
+				horizAlign="center"
+				vertAlign="center"
+			/>
+			<RadioButtonList 
+				id="radioButtonList"
+				translation="[520, 150]"
+			/>
+			<RowList
+	            id="selectionRow"
+	            rowLabelColor="0x333333"
+	            showRowCounter="[false]"
+	            translation="[520,300]"
+	            showRowLabel="[true, true]"
+	        />
+			 <Label
+				id="notFound"
+				translation="[520, 350]"
+				text="Not Found!"
+				horizAlign="center"
+				vertAlign="center"
+				visible="false"
+			/>
+		</Group>
 	</children>
 </component>

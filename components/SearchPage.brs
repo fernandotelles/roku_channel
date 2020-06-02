@@ -130,3 +130,21 @@ sub onItemSelected(params as object)
     m.task.observeField("result","onSuccess")
     m.task.control = "RUN"
 end sub
+
+sub onRowItemSelected(params as object)
+    itemSelected = params.getData()[1]
+    m.detailPage = m.top.createChild("SimpleDetailPage")
+    params = {
+        title: m.assets[itemSelected].title
+        year: "2020"
+        type: m.assets[itemSelected].type
+        poster: "pkg:/images/bladerunner.jpg"
+    }
+    m.detailPage.callFunc("configure", params)
+    m.detailPage.setFocus(true)
+    setFieldsVisible(false)
+end sub
+
+sub setFieldsVisible(visible as boolean)
+    m.top.getChild(0).visible = visible
+end sub
