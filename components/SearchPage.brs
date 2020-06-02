@@ -1,10 +1,10 @@
 sub init()
     m.keyboard = m.top.findNode("miniKeyboard")
-
     m.keyboard.observeField("text", "onKeyEnter")
     m.label = m.top.findNode("resultLabel")
-    
     m.task = createObject("roSGNode", "HTTPTask")
+    m.radioButtonList = m.top.findNode("radioButtonList")
+    initRadioButtonList()
     
     httpParams = {
         httpMethod: "GET"
@@ -43,7 +43,6 @@ sub onSuccess(params as object)
     
     rowData = CreateObject("roSGNode", "ContentNode")
     row = rowData.CreateChild("ContentNode")
-    row.title = "Result"
     for i = 0 to m.assets.Count()-1 step +1
         item = row.CreateChild("ResultRowListData")
         item.posterUrl = m.assets[i].poster
@@ -65,8 +64,10 @@ function onKeyEvent(key, press)
 
     if press
         if key = "right"
-            if m.rowList <> invalid
+            if m.radioButtonList.hasFocus() and m.rowList <> invalid
                 m.rowList.setFocus(true)
+            else
+                m.radioButtonList.setFocus(true)
             end if
         else if key = "left"
             m.keyboard.setFocus(true)
@@ -84,9 +85,23 @@ function getResultRowListConfig()
         rowItemSize: [[120,120]]
         itemSpacing: [ 0, 25]
         rowItemSpacing: [ [20 , 0], [20 , 0] ]
-        rowLabelOffset: [ [0, 25 ], [0, 25 ] ]
         rowFocusAnimationStyle: "floatingFocus"
-        showRowLabel: [true, true]
-        rowLabelColor: "0xFFB17A"
     }
 end function
+
+sub initRadioButtonList()
+    m.radioButtonList.content = createObject("roSGNode", "ContentNode")
+    m.radioButtonList.observeField("itemSelected","onItemSelected")
+    addRadioButtonList("All")
+    addRadioButtonList("Movies")
+    addRadioButtonList("Series")
+    m.radioButtonList.checkedItem = 0
+end sub
+
+sub addRadioButtonList(title as string)
+    if m.radioButtonList.content <> invalid
+        item = createObject("roSGNode", "ContentNode")
+        item.setField("title", title)
+        m.radioButtonList.content.appendChild(item)
+    end if
+end sub

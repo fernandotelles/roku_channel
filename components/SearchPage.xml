@@ -16,11 +16,15 @@
 			horizAlign="center"
 			vertAlign="center"
 		/>
+		<RadioButtonList 
+			id="radioButtonList"
+			translation="[520, 150]"
+		/>
 		<RowList
             id="selectionRow"
             rowLabelColor="0x333333"
             showRowCounter="[false]"
-            translation="[520,150]"
+            translation="[520,300]"
             showRowLabel="[true, true]"
         />
 		 
