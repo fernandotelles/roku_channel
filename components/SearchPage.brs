@@ -77,6 +77,13 @@ function onKeyEvent(key, press)
             end if
         else if key = "left"
             m.keyboard.setFocus(true)
+        else if key = "options"
+            return true
+        else if key = "back"
+            setFieldsVisible(false)
+            m.top.getParent().findNode("gridPanel").grid.visible = true
+            m.top.getParent().findNode("gridPanel").grid.setFocus(true)
+            return true
         end if
     end if
     

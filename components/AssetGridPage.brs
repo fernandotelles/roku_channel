@@ -55,6 +55,7 @@ function onKeyEvent(key, press)
     if press
         if key = "options"
             m.searchPage = m.top.createChild("SearchPage")
+            m.searchPage.id = "searchPage"
             m.searchPage.visible = true
             m.searchPage.setFocus(true)
             m.gridPanel.grid.visible = false

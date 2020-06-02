@@ -4,7 +4,7 @@
 	<script type="text/brightscript" uri="pkg:/components/SearchPage.brs" />
 	
 	<children>
-		<Group>
+		<Group id="searchPageGroup">
 			<MiniKeyboard 
 				id="miniKeyboard"
 				translation="[100, 100]"
